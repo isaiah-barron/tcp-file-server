@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: server/Dockerfile.server
+    image: tcp-file-server
+
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile.client
+    image: client

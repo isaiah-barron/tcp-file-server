@@ -1,0 +1,30 @@
+FROM debian:bullseye-slim
+
+# Disable interactive prompts during install
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install necessary packages
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    g++ \
+    make \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy only the necessary files for the server into the container
+COPY client/ ./client/
+
+# copy makefile from root
+COPY makefile ./
+
+# debug
+RUN ls -l /app/client/
+
+# Build the client program
+RUN make bin/client
+
+# set default command
+CMD ["./bin/client"]
