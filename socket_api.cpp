@@ -44,7 +44,7 @@ namespace net{
     int Send(int sockfd, const void *buf, size_t len, int flags){
         int sent = send(sockfd, buf, len, flags);
         if (sent <= 0){
-            std::cout << "Client disconnected or error\n";
+            std::cout << "Disconnected or error\n";
         }
         return sent;
     }
@@ -52,7 +52,7 @@ namespace net{
     int Recv(int sockfd, void *buf, size_t len, int flags){
         int recieved = recv(sockfd, buf, len, flags);
         if (recieved <= 0){
-            std::cout << "Client disconnected or error\n";
+            std::cout << "Disconnected or error\n";
         }
         return recieved;
     }
